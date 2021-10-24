@@ -9,14 +9,14 @@
  */
 listint_t *swap_element(listint_t *left, listint_t *right, listint_t **list)
 {
-	if (left->previous)
-		(left->previous)->next = right;
+	if (left->prev)
+		(left->prev)->next = right;
 	else
-		*list = right, right->previous = NULL;
+		*list = right, right->prev = NULL;
 	if ((right->next))
-		(right->next)->previous = left;
-	right->previous = left->previous;
-	left->previous = right;
+		(right->next)->prev = left;
+	right->prev = left->prev;
+	left->prev = right;
 	left->next = right->next;
 	right->next = left;
 	return (left);
@@ -30,7 +30,7 @@ listint_t *swap_element(listint_t *left, listint_t *right, listint_t **list)
 void insertion_sort_list(listint_t **list)
 {
 	listint_t *element;
-	listint_t *previous, *move;
+	listint_t *prev, *move;
 
 	if (!list || !(*list))
 		return;
@@ -39,17 +39,17 @@ void insertion_sort_list(listint_t **list)
 
 	while (element)
 	{
-		previous = element->previous;
+		prev = element->prev;
 		move = element;
-		while (move->previous && move->n < previous->n)
+		while (move->prev && move->n < prev->n)
 		{
-			element = swap_element(previous, move, list);
+			element = swap_element(prev, move, list);
 			print_list(*list);
-			if (!move->previous)
+			if (!move->prev)
 				break;
-			previous = move->previous;
+			prev = move->prev;
 		}
 		element = element->next;
-		previous = previous->next;
+		prev = prev->next;
 	}
 }
