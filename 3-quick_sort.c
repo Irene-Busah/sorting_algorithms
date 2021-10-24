@@ -20,7 +20,7 @@ void swap(int *a, int *b)
  */
 unsigned int partition(int *array, size_t size)
 {
-	unsigned int element = 0, swap_element = 0;
+	unsigned int ele = 0, swap_ele = 0;
 	static size_t a_size, pivot = 1;
 	static int *start;
 
@@ -30,25 +30,25 @@ unsigned int partition(int *array, size_t size)
 		a_size = size;
 		pivot = 0;
 	}
-	while (element < size)
+	while (ele < size)
 	{
-		if (array[element] < array[size - 1])
+		if (array[ele] < array[size - 1])
 		{
-			if (ele != swap_element)
+			if (ele != swap_ele)
 			{
-				swap(&(array[element]), &(array[swap_element]));
+				swap(&(array[ele]), &(array[swap_ele]));
 				print_array(start, a_size);
 			}
-			swap_element++;
+			swap_ele++;
 		}
-		element++;
+		ele++;
 	}
-	if (array[element - 1] < array[swap_element])
+	if (array[ele - 1] < array[swap_ele])
 	{
-		swap(&(array[element - 1]), &(array[swap_element]));
+		swap(&(array[ele - 1]), &(array[swap_ele]));
 		print_array(start, a_size);
 	}
-	return (swap_element);
+	return (swap_ele);
 }
 /**
  * quick_sort - quick sort algorithm
