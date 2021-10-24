@@ -12,7 +12,7 @@ listint_t *swap_element(listint_t *left, listint_t *right, listint_t **list)
 	if (left->previous)
 		(left->previous)->next = right;
 	else
-		*list = right, right->prev = NULL;
+		*list = right, right->previous = NULL;
 	if ((right->next))
 		(right->next)->previous = left;
 	right->previous = left->previous;
@@ -30,7 +30,7 @@ listint_t *swap_element(listint_t *left, listint_t *right, listint_t **list)
 void insertion_sort_list(listint_t **list)
 {
 	listint_t *element;
-	listint_t *prev, *move;
+	listint_t *previous, *move;
 
 	if (!list || !(*list))
 		return;
